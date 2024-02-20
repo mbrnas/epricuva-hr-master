@@ -28,7 +28,7 @@ public class Building {
     @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
     private List<Apartment> apartments;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")
     private BuildingManager manager;
 }

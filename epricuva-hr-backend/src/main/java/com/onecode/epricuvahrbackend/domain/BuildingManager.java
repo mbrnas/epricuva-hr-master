@@ -26,6 +26,6 @@ public class BuildingManager {
     @Column(name = "contact_phone")
     private String contactPhone;
 
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
-    private List<Building> buildings;
+    @OneToOne(mappedBy = "manager", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Building building;
 }
