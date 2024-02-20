@@ -1,11 +1,11 @@
 package com.onecode.epricuvahrbackend.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Zgrada {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String adresa;
     private String ulica;
@@ -21,4 +22,11 @@ public class Zgrada {
     private String godinaIzgradnje;
     private int brojStanova;
     private int brojKatova;
+
+    @OneToMany(mappedBy = "zgrada", fetch = FetchType.LAZY)
+    private List<Stan> stanovi;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "upravitelj_id")
+    private Upravitelj upravitelj;
 }
